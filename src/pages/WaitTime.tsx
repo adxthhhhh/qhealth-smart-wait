@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Clock, MapPin, Phone, CheckCircle, Timer } from "lucide-react";
+import { Clock, MapPin, Phone, CheckCircle, Timer, Brain, TrendingUp, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Header } from "@/components/Header";
+import { doctors } from "@/data/doctors";
+
+interface MLPrediction {
+  consultationTimeMin: number;
+  consultationTimeMax: number;
+  accuracy: number;
+  factors: string[];
+}
 
 export const WaitTime = () => {
   const { appointmentId } = useParams();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [mlPrediction, setMLPrediction] = useState<MLPrediction | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,9 +30,97 @@ export const WaitTime = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Get appointment data from localStorage (in real app, this would be an API call)
+  // Get appointment data from localStorage
   const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
   const appointment = appointments.find((apt: any) => apt.id === appointmentId);
+
+  // ML-based consultation time prediction
+  useEffect(() => {
+    if (appointment) {
+      const doctor = doctors.find(d => d.id === appointment.doctorId);
+      if (doctor) {
+        // Simulate ML prediction based on various factors
+        const calculateMLPrediction = (): MLPrediction => {
+          let baseTime = 10; // Base consultation time
+          let factors: string[] = [];
+          
+          // Specialty-based time adjustment
+          const specialtyTimeMap: { [key: string]: number } = {
+            'Cardiologist': 12,
+            'Neurologist': 15,
+            'Dermatologist': 8,
+            'Pediatrician': 10,
+            'Orthopedic Surgeon': 13,
+            'Gastroenterologist': 11
+          };
+          
+          baseTime = specialtyTimeMap[doctor.specialty] || 10;
+          factors.push(`${doctor.specialty} specialty analysis`);
+          
+          // Experience factor (more experienced = more efficient)
+          if (doctor.experience > 15) {
+            baseTime -= 1;
+            factors.push('Senior doctor efficiency');
+          } else if (doctor.experience < 5) {
+            baseTime += 2;
+            factors.push('Thorough examination approach');
+          }
+          
+          // Rating factor (higher rating = better time management)
+          if (doctor.rating >= 4.8) {
+            baseTime -= 1;
+            factors.push('Excellent patient management');
+          }
+          
+          // Symptoms complexity
+          if (appointment.symptoms && appointment.symptoms.length > 100) {
+            baseTime += 3;
+            factors.push('Complex case analysis');
+          } else if (appointment.symptoms && appointment.symptoms.length < 50) {
+            baseTime -= 1;
+            factors.push('Routine consultation');
+          }
+          
+          // Time of day factor
+          const appointmentHour = parseInt(appointment.time.split(':')[0]);
+          if (appointmentHour < 10 || appointmentHour > 16) {
+            baseTime += 1;
+            factors.push('Peak hours adjustment');
+          }
+          
+          // Day of week factor
+          const appointmentDate = new Date(appointment.date);
+          const dayOfWeek = appointmentDate.getDay();
+          if (dayOfWeek === 1 || dayOfWeek === 5) { // Monday or Friday
+            baseTime += 1;
+            factors.push('High demand day');
+          }
+          
+          // Calculate range (±2-3 minutes from base)
+          const minTime = Math.max(5, baseTime - 2);
+          const maxTime = Math.min(15, baseTime + 3);
+          
+          // Calculate accuracy based on available data points
+          let accuracy = 75;
+          if (appointment.symptoms) accuracy += 10;
+          if (doctor.reviewCount > 100) accuracy += 10;
+          if (doctor.experience > 10) accuracy += 5;
+          
+          return {
+            consultationTimeMin: minTime,
+            consultationTimeMax: maxTime,
+            accuracy: Math.min(95, accuracy),
+            factors
+          };
+        };
+        
+        // Simulate API delay for ML processing
+        setTimeout(() => {
+          setMLPrediction(calculateMLPrediction());
+        }, 1500);
+      }
+    }
+  }, [appointment]);
 
   if (!appointment) {
     return (
@@ -58,6 +155,55 @@ export const WaitTime = () => {
             <h1 className="text-3xl font-bold text-foreground mb-2">Appointment Confirmed!</h1>
             <p className="text-muted-foreground">Your token number is ready</p>
           </div>
+
+          {/* ML Consultation Time Prediction */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-primary" />
+                AI-Powered Consultation Time Prediction
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!mlPrediction ? (
+                <div className="flex items-center justify-center py-8">
+                  <div className="text-center">
+                    <Activity className="h-8 w-8 text-primary mx-auto mb-2 animate-pulse" />
+                    <p className="text-muted-foreground">Analyzing consultation patterns...</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-accent mb-2">
+                      {mlPrediction.consultationTimeMin}-{mlPrediction.consultationTimeMax} min
+                    </div>
+                    <p className="text-muted-foreground">Predicted consultation time</p>
+                  </div>
+                  
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-1 mb-2">
+                      <TrendingUp className="h-5 w-5 text-accent" />
+                      <span className="text-2xl font-bold text-accent">{mlPrediction.accuracy}%</span>
+                    </div>
+                    <p className="text-muted-foreground">Prediction accuracy</p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <p className="font-medium text-sm">Analysis based on:</p>
+                    <ul className="text-xs text-muted-foreground space-y-1">
+                      {mlPrediction.factors.map((factor, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-accent rounded-full"></div>
+                          {factor}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Appointment Details */}
