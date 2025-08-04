@@ -72,5 +72,53 @@ export const doctors: Doctor[] = [
     availability: "Mon-Fri 10AM-5PM",
     imageUrl: "/placeholder.svg",
     consultationFee: 900
+  },
+  {
+    id: "7",
+    name: "Dr. Radhika Menon",
+    specialty: "ENT Specialist",
+    rating: 4.8,
+    reviewCount: 142,
+    experience: 16,
+    education: "MBBS, MS (ENT), Government Medical College Thiruvananthapuram",
+    availability: "Mon-Sat 9AM-6PM, Kochi",
+    imageUrl: "/placeholder.svg",
+    consultationFee: 700
+  },
+  {
+    id: "8", 
+    name: "Dr. Suresh Nair",
+    specialty: "ENT Specialist",
+    rating: 4.7,
+    reviewCount: 98,
+    experience: 12,
+    education: "MBBS, MS (ENT), Calicut Medical College",
+    availability: "Tue-Sun 10AM-7PM, Kozhikode",
+    imageUrl: "/placeholder.svg",
+    consultationFee: 650
+  },
+  {
+    id: "9",
+    name: "Dr. Pradeep Kumar",
+    specialty: "ENT Specialist", 
+    rating: 4.9,
+    reviewCount: 187,
+    experience: 20,
+    education: "MBBS, MS (ENT), Fellowship in Head & Neck Surgery, KIMS",
+    availability: "Mon-Fri 8AM-5PM, Trivandrum",
+    imageUrl: "/placeholder.svg",
+    consultationFee: 800
+  },
+  {
+    id: "10",
+    name: "Dr. Lakshmi Pillai",
+    specialty: "ENT Specialist",
+    rating: 4.6,
+    reviewCount: 76,
+    experience: 9,
+    education: "MBBS, MS (ENT), Kottayam Medical College",
+    availability: "Daily 9AM-8PM, Kottayam",
+    imageUrl: "/placeholder.svg",
+    consultationFee: 600
   }
 ];
