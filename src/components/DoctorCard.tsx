@@ -77,17 +77,19 @@ export const DoctorCard = ({ doctor }: DoctorCardProps) => {
         <div className="flex gap-3 w-full">
           <Button 
             variant="outline" 
-            className="flex-1"
+            size="default"
+            className="flex-1 min-w-0"
             onClick={() => navigate(`/doctor/${doctor.id}`)}
           >
             View Profile
           </Button>
           <Button 
-            className="flex-1 bg-primary hover:bg-primary/90"
+            size="default"
+            className="flex-1 min-w-0 bg-primary hover:bg-primary/90"
             onClick={() => navigate(`/appointment/${doctor.id}`)}
           >
-            <Calendar className="h-4 w-4 mr-2" />
-            Book Appointment
+            <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+            <span className="truncate">Book Appointment</span>
           </Button>
         </div>
       </CardFooter>
