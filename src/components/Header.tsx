@@ -23,6 +23,15 @@ export const Header = ({ searchTerm, onSearchChange }: HeaderProps) => {
             Qhealth
           </div>
 
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <a href="#home" className="text-foreground hover:text-primary transition-colors">Home</a>
+            <a href="#about" className="text-foreground hover:text-primary transition-colors">About Us</a>
+            <a href="#product" className="text-foreground hover:text-primary transition-colors">Product</a>
+            <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
+            <a href="#contact" className="text-foreground hover:text-primary transition-colors">Contact</a>
+          </nav>
+
           {/* Search Bar */}
           <div className="flex-1 max-w-md mx-8">
             <div className="relative">
