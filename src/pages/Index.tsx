@@ -183,44 +183,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Doctors Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Our Doctors
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our platform connects you with verified, experienced doctors across various specialties. 
-              Book your appointment today and experience healthcare without the wait.
-            </p>
-          </div>
-
-          {/* Search Results */}
-          {searchTerm && (
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold text-foreground">
-                Search Results for "{searchTerm}" ({filteredDoctors.length} found)
-              </h3>
-            </div>
-          )}
-
-          {/* Doctors Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredDoctors.map((doctor) => (
-              <DoctorCard key={doctor.id} doctor={doctor} />
-            ))}
-          </div>
-
-          {filteredDoctors.length === 0 && searchTerm && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground">
-                No doctors found matching your search. Try different keywords.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-muted/30">
