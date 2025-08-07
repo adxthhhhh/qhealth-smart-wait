@@ -301,6 +301,78 @@ const Index = () => {
       </section>
 
 
+      {/* Partner Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              🤝 Partner With Us
+            </h2>
+            <p className="text-lg text-muted-foreground mb-2">
+              ഞങ്ങളുമായി പങ്കാളികളാവൂ
+            </p>
+          </div>
+          
+          <div className="max-w-3xl mx-auto text-center">
+            <Card className="shadow-lg mb-8">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-semibold mb-4">
+                  Are you a hospital, clinic or health provider?
+                </h3>
+                <p className="text-lg text-muted-foreground mb-4">
+                  ആശുപത്രിയോ, ക്ലിനിക്കോ, ഹെൽത്ത് സെന്ററോ ആണോ?
+                </p>
+                <p className="text-lg mb-4">
+                  Join Kerala's smart care revolution.
+                </p>
+                <p className="text-lg text-muted-foreground mb-6">
+                  കേരളത്തിലെ സ്മാർട്ട് ഹെൽത്ത് മാറ്റത്തിന് ഒരു പങ്കാളിയാകൂ.
+                </p>
+                
+                <div className="flex items-center justify-center">
+                  <Mail className="h-5 w-5 text-primary mr-2" />
+                  <a href="mailto:partner@qhealth.in" className="text-primary hover:underline font-medium">
+                    📧 partner@qhealth.in
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              📌 One App. One State. One Mission.
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              ഒരു ആപ്പ്. ഒരു സംസ്ഥാനം. ഒരു ദൗത്യം.
+            </p>
+            
+            <div className="space-y-4">
+              <p className="text-xl font-medium">
+                For a healthier, faster, safer Kerala.
+              </p>
+              <p className="text-lg text-muted-foreground">
+                ആരോഗ്യകരമായ, അതിവേഗ, സുരക്ഷിതമായ കേരളത്തിനായി.
+              </p>
+              
+              <div className="mt-8 p-6 bg-background/50 rounded-lg">
+                <p className="text-xl font-semibold text-primary mb-2">
+                  QHealth – Healthcare That Waits For You.
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  QHealth – നിങ്ങളുടെ സമയം കാത്തുസൂക്ഷിക്കുന്ന ആരോഗ്യ പരിചരണം.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
