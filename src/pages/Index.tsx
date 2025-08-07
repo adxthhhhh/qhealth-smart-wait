@@ -183,6 +183,123 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Token Booking Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Book Your Token</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Skip the waiting room! Book your token online and get real-time updates on your appointment status.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <Card className="shadow-lg">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-semibold mb-6">Quick Token Booking</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Select Department</label>
+                      <select className="w-full p-3 border border-border rounded-md bg-background">
+                        <option>General Medicine</option>
+                        <option>Cardiology</option>
+                        <option>ENT</option>
+                        <option>Dermatology</option>
+                        <option>Orthopedics</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Select Doctor</label>
+                      <select className="w-full p-3 border border-border rounded-md bg-background">
+                        <option>Dr. Sarah Johnson</option>
+                        <option>Dr. Michael Chen</option>
+                        <option>Dr. Emily Davis</option>
+                        <option>Dr. Robert Wilson</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Preferred Time</label>
+                      <input 
+                        type="time" 
+                        className="w-full p-3 border border-border rounded-md bg-background"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Patient Name</label>
+                      <input 
+                        type="text" 
+                        className="w-full p-3 border border-border rounded-md bg-background"
+                        placeholder="Enter patient name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Phone Number</label>
+                      <input 
+                        type="tel" 
+                        className="w-full p-3 border border-border rounded-md bg-background"
+                        placeholder="Enter phone number"
+                      />
+                    </div>
+                    <Button className="w-full">Book Token</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <div className="space-y-6">
+              <Card className="shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold">Current Token</h4>
+                      <p className="text-2xl font-bold text-primary">A-15</p>
+                    </div>
+                    <Clock className="h-8 w-8 text-primary" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold">Estimated Wait Time</h4>
+                      <p className="text-2xl font-bold text-primary">12 min</p>
+                    </div>
+                    <Users className="h-8 w-8 text-primary" />
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="shadow-lg">
+                <CardContent className="p-6">
+                  <h4 className="font-semibold mb-3">Token Benefits</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                      <span className="text-sm">No physical waiting</span>
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                      <span className="text-sm">Real-time updates</span>
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                      <span className="text-sm">SMS notifications</span>
+                    </li>
+                    <li className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-primary mr-2" />
+                      <span className="text-sm">Accurate time predictions</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Contact Section */}
       <section id="contact" className="py-16 bg-muted/30">
